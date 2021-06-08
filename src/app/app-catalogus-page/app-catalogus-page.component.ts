@@ -58,10 +58,10 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
     See https://angular.io/guide/lifecycle-hooks for more information.
   */
   ngOnInit(): void {
-    const inventoryPageOptions = localStorage.getItem('inventoryPageOptions');
+    const catalogPageOptions = localStorage.getItem('catalogPageOptions');
 
-    if (inventoryPageOptions != null) {
-      this.pageSize = JSON.parse(inventoryPageOptions);
+    if (catalogPageOptions != null) {
+      this.pageSize = JSON.parse(catalogPageOptions);
     }
   }
 
@@ -162,7 +162,7 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
     this.pageIndex = event?.pageIndex ?? INDEX_DEFAULT;
     if (this.pageSize !== event?.pageSize) {
       this.pageSize = event?.pageSize ?? PAGE_SIZE_DEFAULT;
-      localStorage.setItem('inventoryPageOptions', JSON.stringify(this.pageSize));
+      localStorage.setItem('catalogPageOptions', JSON.stringify(this.pageSize));
     }
     this.getCatalogItems();
     return event;
@@ -194,6 +194,7 @@ export class AppCatalogusPageComponent implements OnInit, AfterViewInit {
    * Gets all the catalog objects
    */
   private getCatalogItems(): void {
+    this.isLoading = true;
     this.apiService.getCatalogEntries(this.pageIndex, this.pageSize).subscribe({
       next: (resp) => {
         this.readCatalogPage(resp.body);

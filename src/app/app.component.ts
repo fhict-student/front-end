@@ -114,7 +114,7 @@ export class AppComponent {
       textToTranslate = 'APP.ROUTE.CATALOG';
     } else if (this.router.url.endsWith('reservations')) {
       textToTranslate = 'APP.ROUTE.RESERVATIONS';
-    } else if (this.router.url.endsWith('reservation')) {
+    } else if (this.router.url.includes('reservation')) {
       textToTranslate = 'APP.ROUTE.RESERVATION';
     }
 
