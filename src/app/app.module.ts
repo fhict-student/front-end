@@ -8,24 +8,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { TranslateLoader } from '@ngx-translate/core';
-import { AppHomePageComponent } from './app-home-page/app-home-page.component';
 import { AppSideMenuBarComponent } from './app-side-menu-bar/app-side-menu-bar.component';
 import { AppAddProductPageComponent } from './app-add-product-page/app-add-product-page.component';
 import { AppProductDatepickerComponent } from './app-product-datepicker/app-product-datepicker.component';
 import { AppShoppingCartPageComponent } from './app-shopping-cart-page/app-shopping-cart-page.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { AppArchiveDialogComponent } from './app-archive-dialog/app-archive-dialog.component';
+import { AppCatalogusPageComponent } from './app-catalogus-page/app-catalogus-page.component';
 import { StatusNameKeyPipe } from './pipes/status-name-key.pipe';
 import { StatusNameClassPipe } from './pipes/status-name-class.pipe';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatPaginatorIntlFactory } from './factories/paginatorI18n.factory';
 import { HttpLoaderFactory } from './factories/http-loader.factory';
 import { AppInventoryPageComponent } from './app-inventory-page/app-inventory-page.component';
+import { AppReservationsOverviewPageComponent } from './app-reservations-overview-page/app-reservations-overview-page.component';
+import { AppReservationActionPageComponent } from './app-reservation-action-page/app-reservation-action-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppHomePageComponent,
     AppSideMenuBarComponent,
     AppAddProductPageComponent,
     AppProductDatepickerComponent,
@@ -33,7 +34,10 @@ import { AppInventoryPageComponent } from './app-inventory-page/app-inventory-pa
     AppInventoryPageComponent,
     StatusNameKeyPipe,
     StatusNameClassPipe,
-    AppArchiveDialogComponent
+    AppArchiveDialogComponent,
+    AppCatalogusPageComponent,
+    AppReservationsOverviewPageComponent,
+    AppReservationActionPageComponent
   ],
   imports: [
     BrowserModule,

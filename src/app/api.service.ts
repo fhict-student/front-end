@@ -7,8 +7,10 @@ import { IAddReservation } from './models/add-reservation.model';
 import { ICategory } from './models/category.model';
 import { IProductFlat } from './models/product-flat.model';
 import { IReservation } from './models/reservation.model';
+import { CatalogPage } from './models/catalog-page.model';
 import { IInventoryPage } from './models/inventory-page.model';
-import { environment } from "../environments/environment";
+import { environment } from '../environments/environment';
+import { IReservationAction } from './models/reservation-action.model';
 
 @Injectable({
   providedIn: 'root'
@@ -32,12 +34,24 @@ export class ApiService {
     return this.http.get<Array<IReservation>>(`${this.API_GATEWAY}reservation/${productId}`, { observe: 'response' });
   }
 
+  getReservationsSimilar(productId: number): Observable<HttpResponse<Array<IReservation>>> {
+    return this.http.get<Array<IReservation>>(`${this.API_GATEWAY}reservation/similar/${productId}`, { observe: 'response' });
+  }
+
   getProductFlatById(productId: number): Observable<HttpResponse<IProductFlat>> {
     return this.http.get<IProductFlat>(`${this.API_GATEWAY}product/flat/${productId}`, { observe: 'response' });
   }
 
   getInventoryProducts(pageNumber: number, pageSize: number): Observable<HttpResponse<IInventoryPage>> {
     return this.http.get<IInventoryPage>(`${this.API_GATEWAY}product/page/${pageNumber}/${pageSize}`, { observe: 'response' });
+  }
+
+  getCatalogEntries(pageNumber: number, pageSize: number): Observable<HttpResponse<CatalogPage>> {
+    return this.http.get<CatalogPage>(`${this.API_GATEWAY}product/catalogentries/${pageNumber}/${pageSize}`, { observe: 'response' });
+  }
+
+  getSimilarReservations(): Observable<HttpResponse<Array<Array<IReservation>>>> {
+    return this.http.get<Array<Array<IReservation>>>(`${this.API_GATEWAY}reservation/similar`, { observe: 'response' });
   }
 
   /* POST calls */
@@ -53,6 +67,9 @@ export class ApiService {
     return this.http.post<any>(`${this.API_GATEWAY}category`, category, { observe: 'response' });
   }
 
+  reservationAction(reservationAction: IReservationAction): Observable<HttpResponse<any>> {
+    return this.http.post<any>(`${this.API_GATEWAY}reservation`, reservationAction, { observe: 'response' });
+  }
   /* DELETE calls */
   archiveProduct(productid: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.API_GATEWAY}product/` + productid, { observe: 'response' });
